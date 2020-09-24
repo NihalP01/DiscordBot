@@ -1,3 +1,5 @@
+/* Coded by NihalP01 */
+
 const Discord = require("discord.js");
 const apiKey = "Paste your your bot token here"
 const client = new Discord.Client();
