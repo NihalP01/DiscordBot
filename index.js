@@ -1,7 +1,5 @@
 const Discord = require("discord.js");
-const config = require("./config.json");
-
-
+const apiKey = process.env.api_key;
 const client = new Discord.Client();
 
 const prefix = "?";
