@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
-const apiKey = process.env.api_key;
+const apiKey = "NzU3NTcxNjcwNzM4MjA2NzIx.X2iVmQ.WNrTdQJP_XI2opFPrrJvTheWaQA"
 const client = new Discord.Client();
+client.login(apiKey);
 
 const prefix = "?";
 
@@ -11,12 +12,12 @@ client.on("message", function(message) {
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
-
+  let isBotOwner = message.author.id == 481332163539632130
   //for ping test
   if (command === "ping") {
     const timeTaken = Date.now() - message.createdTimestamp;
     const userName = message.author.username;
-    message.reply(`Pong! Hey ${userName}, I am Alive. Latency: ${timeTaken}ms.`);
+    message.channel.send(`Pong! Hey ${userName}, I am Alive. Latency: ${timeTaken}ms.`);
   }
 
   //to get avatar
@@ -36,9 +37,11 @@ client.on("message", function(message) {
                       message.reply(`Successfully kicked ${user.tag}`);
                   })
                   .catch(err => {
-                      message.reply(`Sorry, I was not able to kick ${user.tag} \n Reason: ${err},`);
+                      message.reply(`Sorry, I was not able to kick ${user.tag} \n Reason: ${err}`);
                   });
-        }else{
+                
+      }
+        else{
             message.reply('That user is not in this guild!');
         }
       }else{
@@ -57,17 +60,28 @@ client.on("message", function(message) {
                 message.reply(`Successfully baned ${user.tag}`);
               })
               .catch(err=>{
-                message.reply(`Sorry, I was unable to kick ${user.tag}\n Reason: ${err}`);
+                message.reply(`Sorry, I was unable to ban ${user.tag}\n Reason: ${err}`);
               })
-      }else{
+    }
+      else{
         message.reply('That user is not in this guild');
       }
     }else{
-      message.reply('You have not mentioned the user to kick!')
+      message.reply('You have not mentioned the user to ban!')
     }
   }
 
-  //
+  //to shut down(for bot owner)
+  else if(command === "shutdown"){
+    if(!isBotOwner){
+        message.reply(`Want a punch?, This is owner only command`);
+        console.log(message.author.id);
+    }else{
+      message.reply('Shutting down....').then(m =>{
+        client.destroy();
+      })
+    }
+  } 
+  
 });
 
-client.login(apiKey);
