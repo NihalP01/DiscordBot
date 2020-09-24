@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const apiKey = "NzU3NTcxNjcwNzM4MjA2NzIx.X2iVmQ.WNrTdQJP_XI2opFPrrJvTheWaQA"
+const apiKey = "Paste your your bot token here"
 const client = new Discord.Client();
 client.login(apiKey);
 
