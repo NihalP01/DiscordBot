@@ -1,7 +1,7 @@
 /* Coded by NihalP01 */
 
 const Discord = require("discord.js");
-const apiKey = "PASTE YOUR BOT TOKEN HERE"
+const apiKey = "NzU3NTcxNjcwNzM4MjA2NzIx.X2iVmQ.2VRhdXCt6BpDAMdJSeEJO3w_E3U"
 const client = new Discord.Client();
 client.login(apiKey);
 
@@ -99,14 +99,20 @@ client.on("message", async message => {
   //to purge some messages
   else if (command === "purge") {
     const deleteCount = parseInt(args[0], 10);
-    if (!deleteCount || deleteCount < 2 || deleteCount > 200) {
+    if (!deleteCount || deleteCount < 2 || deleteCount > 100) {
       message.channel.send('Please provide the number of messages to delete (2<n<200).');
     } else {
       const fetched = await message.channel.messages.fetch({ limit: deleteCount });
-      message.channel.bulkDelete(fetched)
-      message.channel.send(`Done! Purged ${deleteCount} messages.`)
+       message.channel.bulkDelete(fetched)
+       message.channel.send(`Done! Purged ${deleteCount} messages.`)
         .catch(err => message.reply(`Couldn't delete messages \n Reason: ${err}`))
     }
   }
   
+  //to check date and time
+  else if(command === "date"){
+    var time = new Date();
+    message.channel.send(`It's ${time}!`);
+  }
+
 });
