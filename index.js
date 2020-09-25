@@ -1,7 +1,7 @@
 /* Coded by NihalP01 */
 
 const Discord = require("discord.js");
-const apiKey = "NzU3NTcxNjcwNzM4MjA2NzIx.X2iVmQ.2VRhdXCt6BpDAMdJSeEJO3w_E3U"
+const apiKey = "YOUR BOT TOKEN GOES HERE"
 const client = new Discord.Client();
 client.login(apiKey);
 
